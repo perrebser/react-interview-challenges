@@ -5,7 +5,7 @@ function App() {
   const RANDOM_FACTS_END = "https://catfact.ninja/fact";
   // const RANDOM_IMG_END = `/cat/says/${world}?fontSize=400&fontColor=blue`;
   
-  const [fact, setFact] = useState("");
+  const [fact, setFact] = useState();
   const [imageUrl,setImageUrl]=useState();
   
   useEffect(() => {
@@ -16,10 +16,10 @@ function App() {
   }, []);
 
   useEffect(()=>{
+    if(!fact) return
     const world=fact.split(' ')[0]
       
     setImageUrl(`https://cataas.com/cat/says/${world}?fontSize=400&fontColor=blue`)
-
 
   },[fact])
   
