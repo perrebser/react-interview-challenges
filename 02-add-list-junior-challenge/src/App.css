@@ -4,3 +4,18 @@
   padding: 2rem;
   text-align: center;
 }
+
+ul {
+  list-style: circle;
+}
+
+input{
+  height: 2rem;
+  border-radius: 10px;
+}
+
+header{
+  display: flex;
+ 
+  align-items: center;
+}
