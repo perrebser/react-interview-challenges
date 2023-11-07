@@ -1,21 +1,42 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100%;
 }
 
-ul {
-  list-style: circle;
-}
+
 
 input{
-  height: 2rem;
-  border-radius: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
 }
 
 header{
+ margin-bottom: 3rem;
+}
+
+.userInputs{
   display: flex;
- 
+  justify-content: center;
+  gap:0.5rem;
+}
+
+h2{
+  text-align: center;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+section{
+  display: flex;
   align-items: center;
+  flex-direction: column;
 }
