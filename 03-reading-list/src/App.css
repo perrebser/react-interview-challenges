@@ -1,0 +1,12 @@
+ul{
+    display: grid;
+    grid-template-columns: repeat(6,200px);
+    gap: 15px;
+}
+
+li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
