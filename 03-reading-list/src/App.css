@@ -1,12 +1,20 @@
 ul{
     display: grid;
-    grid-template-columns: repeat(6,200px);
+    grid-template-columns: repeat(4,150px);
     gap: 15px;
 }
 
 li{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    padding: 3px;
+}
+li>p{
+    text-align: center;
+}
+span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

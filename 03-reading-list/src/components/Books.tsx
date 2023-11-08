@@ -21,9 +21,13 @@ const Books: React.FC = () => {
     <>
       <ul>
         {books.map((book) => (
-          <li key={book.ISBN}>
-            <p className="w-95% capitalize line-clamp-1">{book.title}</p>
+          <li  key={book.ISBN}>
+            <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
             <img src={book.cover} width={200}></img>
+            <span>
+              <p className="text-sm font-semibold">{book.year}</p>
+              <p className="text-sm font-semibold capitalize">{book.pages} pág.</p>
+            </span>
           </li>
         ))}
       </ul>
