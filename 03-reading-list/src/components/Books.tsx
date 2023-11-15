@@ -26,7 +26,7 @@ const Books: React.FC<Props> = ({books}) => {
           <li  key={book.ISBN} className="flex justify-center flex-col">
             <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
             <div className="img-content">
-            <img src={book.cover} width={200}></img>
+            <img src={book.cover} className="aspect-9/16" width={200}></img>
             <div className="image-overlay"></div>
             </div>
             <span>
