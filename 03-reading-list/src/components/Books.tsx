@@ -1,4 +1,3 @@
-import data from "../const/books.json";
 import "../App.css";
 
 
@@ -22,9 +21,9 @@ interface Props{
 const Books: React.FC<Props> = ({books}) => {
   return (
     <>
-      <ul className="ml-4">
+      <ul className="ml-4 grid grid-cols-4 gap-x-5 max-w-3xl">
         {books.map((book) => (
-          <li  key={book.ISBN}>
+          <li  key={book.ISBN} className="flex justify-center flex-col">
             <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
             <div className="img-content">
             <img src={book.cover} width={200}></img>

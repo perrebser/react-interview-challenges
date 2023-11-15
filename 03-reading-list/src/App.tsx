@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Books, { Book } from "./components/Books";
-import SideBar from "./components/SideBar";
 import data from "./const/books.json";
 
 function App() {
@@ -22,9 +21,6 @@ function App() {
         <section className="mt-11 ml-12">
           <Books books={books}/>
         </section>
-        <aside>
-          <SideBar/>
-        </aside>
         <footer className="flex justify-center bottom-0">
           <a href="https://github.com/perrebser">By perrebser</a>
         </footer>
