@@ -15,15 +15,21 @@ export interface Book{
     otherBooks:string[]
   }
 }
-const Books: React.FC = () => {
-  const books:Book[]=data.library.map((books)=>books.book)
+
+interface Props{
+  books:Book[];
+}
+const Books: React.FC<Props> = ({books}) => {
   return (
     <>
-      <ul>
+      <ul className="ml-4">
         {books.map((book) => (
           <li  key={book.ISBN}>
             <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
+            <div className="img-content">
             <img src={book.cover} width={200}></img>
+            <div className="image-overlay"></div>
+            </div>
             <span>
               <p className="text-sm font-semibold">{book.year}</p>
               <p className="text-sm font-semibold capitalize">{book.pages} pág.</p>

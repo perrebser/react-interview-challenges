@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import Books from "./components/Books";
+import Books, { Book } from "./components/Books";
+import SideBar from "./components/SideBar";
+import data from "./const/books.json";
+
 function App() {
-  const [readingList,setReadingList]=useState<Books[]>([])
+  const [books,setBooks]=useState<Book[]>([])
 
-  const handleAddReadingList=(isbn:number):void=>{
+  useEffect(()=>{
+    setBooks(data.library.map((books)=>books.book))
+  },[])
 
-  }
   return (
     <>
       <main>
@@ -15,11 +19,11 @@ function App() {
             <a href="#">Reading List</a>
             </h1>
           </nav>
-        <section className="mt-11">
-          <Books/>
+        <section className="mt-11 ml-12">
+          <Books books={books}/>
         </section>
         <aside>
-          <p>reading</p>
+          <SideBar/>
         </aside>
         <footer className="flex justify-center bottom-0">
           <a href="https://github.com/perrebser">By perrebser</a>

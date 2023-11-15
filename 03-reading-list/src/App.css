@@ -18,3 +18,23 @@ span{
     justify-content: space-between;
     align-items: center;
 }
+.img-content {
+    position: relative;
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: #222222;
+        opacity: 0;
+        transition: all .3s ease;
+    }
+
+    &:hover{
+        .image-overlay{
+            opacity: .8;
+        }
+    }
+}
