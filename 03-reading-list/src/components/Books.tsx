@@ -21,6 +21,10 @@ interface Props{
 const Books: React.FC<Props> = ({books}) => {
   return (
     <>
+    {
+      books.length==0 ?
+      <span>No hemos encontrado libros</span>
+      :
       <ul className="ml-4 grid grid-cols-4 gap-x-5 max-w-3xl">
         {books.map((book) => (
           <li  key={book.ISBN} className="flex justify-center flex-col">
@@ -36,6 +40,7 @@ const Books: React.FC<Props> = ({books}) => {
           </li>
         ))}
       </ul>
+    }
     </>
   );
 };

@@ -26,3 +26,17 @@ span{
         }
     }
 }
+
+nav{
+    grid-area: top;
+}
+.content{
+    grid-area: center;
+}
+
+footer{
+    grid-area: bottom;
+}
+aside{
+    grid-area:left;
+}
