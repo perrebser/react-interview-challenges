@@ -1,30 +1,12 @@
-const filters = [
-  {
-    id: 1,
-    filter: "Fantasía",
-  },
-  {
-    id: 2,
-    filter: "Ciencia ficción",
-  },
-  {
-    id: 3,
-    filter: "Zombies",
-  },
-  { id: 4, filter: "Terror" },
-  { id: 5, filter: "Aventuras" },
-];
-
 interface Props {
-//   onFilterBooks: (genre: string) => void;
-  onChangeFilter: (genre: string)=>void;
+  onChangeFilter: (event) => void;
 }
 
-const SideBar: React.FC<Props> = ({onChangeFilter}) => {
+const SideBar: React.FC<Props> = ({ onChangeFilter }) => {
   return (
     <div className="flex flex-col gap-5 justify-between ml-3">
       <div>
-        <p className="text-xl font-semibold">Por numero de paginas</p>
+        <p className="text-2xl font-semibold">Por numero de paginas</p>
         <input
           type="range"
           min="1"
@@ -34,18 +16,17 @@ const SideBar: React.FC<Props> = ({onChangeFilter}) => {
           id="myRange"
         ></input>
       </div>
-      <ul className="flex flex-col gap-3 justify-between">
-        <h3 className="text-xl font-semibold">Filtrar por genero: </h3>
-        {filters.map((filter) => (
-          <li
-            className="cursor-pointer"
-            onClick={() => onChangeFilter(filter.filter)}
-            key={filter.id}
-          >
-            {filter.filter}
-          </li>
-        ))}
-      </ul>
+      <div className="filters">
+        <h2 className="text-2xl pb-3 font-semibold">Filtra por genero</h2>
+        <select name="filtros" id="filter" className="cursor-pointer text-justify text-lg" defaultValue={""} onChange={(event)=>onChangeFilter(event)}>
+          <option value="">Todos</option>
+          <option value="fantasía">Fantasía</option>
+          <option value="Ciencia ficción">Ciencia ficción</option>
+          <option value="Zombies">Zombies</option>
+          <option value="Terror">Terror</option>
+          <option value="Aventuras">Aventuras</option>
+        </select>
+      </div>
     </div>
   );
 };

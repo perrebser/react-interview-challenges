@@ -6,6 +6,8 @@ span{
     justify-content: space-between;
     align-items: center;
 }
+
+   
 .img-content {
     position: relative;
 
@@ -26,12 +28,13 @@ span{
         }
     }
 }
-
 nav{
     grid-area: top;
 }
 .content{
     grid-area: center;
+    margin: 0 auto;
+    margin-top: 3rem;
 }
 
 footer{

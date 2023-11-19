@@ -4,40 +4,39 @@ import Books, { Book } from "./components/Books";
 import data from "./const/books.json";
 import SideBar from "./components/SideBar";
 function App() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<Book[]>(
+    data.library.map((book) => book.book)
+  );
 
-  const [filteredBooks,setFilteredBooks]=useState<Book[]>([]);
+  const [readingListCount, setReadingListCount] = useState<number>(0);
 
-  const [filter,setFilter]=useState<string>()
+  const [readingList, setReadingList] = useState<Book[]>([]);
 
-  useEffect(() => {
-    setBooks(data.library.map((books) => books.book));
-  }, []);
+  const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
 
-  const handleChangeFilter=(genre:string):void=>{
-      setFilter(genre)
-  }
-  useEffect(()=>{
-    if(filter==="Fantasía"){
-      handleOnFilter(filter)
-    }else if(filter==="Ciencia ficción"){
-      handleOnFilter(filter)
-    }else if(filter==="Zombies"){
-      handleOnFilter(filter)
-    }else if(filter==="Terror"){
-      handleOnFilter(filter)
-    }else if(filter==="Aventuras"){
-      handleOnFilter(filter)
-    }else{
-      setFilteredBooks(books)
-    }
-  },[books,filter])
+  const [filter, setFilter] = useState<string>("");
 
-  const handleOnFilter = (genre: string): void => {
-    const filteredBooks = books.filter((book) => book.genre === genre);
-    setFilteredBooks(filteredBooks)
+  const handleChangeFilter = (event): void => {
+    setFilter(event.target.value);
   };
 
+  const handleAddToReadingList = (ISBN: string): void => {
+    const book = books.find((element) => element.ISBN === ISBN);
+    setReadingList([...readingList, book!]);
+  };
+
+  useEffect(() => {
+    setReadingListCount(readingList.length);
+  }, [readingList]);
+
+  useEffect(() => {
+    if (filter === "") {
+      setFilteredBooks(books);
+    } else {
+      const filterBooks = books.filter((book) => book.genre === filter);
+      setFilteredBooks(filterBooks);
+    }
+  }, [filter, books]);
   return (
     <>
       <main>
@@ -46,15 +45,23 @@ function App() {
             <a href="#">Reading List</a>
           </h1>
         </nav>
-        <section className="mt-11 content">
-          <Books books={filteredBooks} />
+        <section className="content">
+          <div className="flex mb-3 justify-items-start gap-4 border-b-2 border-white">
+            <h2 className="text-2xl cursor-pointer hover:text-white">
+              Libros disponibles
+            </h2>
+            <h2 className="text-2xl cursor-pointer hover:text-white">
+              Lista de Lectura({readingListCount})
+            </h2>
+          </div>
+          <Books
+            books={filteredBooks}
+            onAddToReadingList={handleAddToReadingList}
+          />
         </section>
-        <aside className="flex flex-col justify-center items-start ">
+        <aside>
           <SideBar onChangeFilter={handleChangeFilter} />
         </aside>
-        <footer className="flex bottom-0 justify-center">
-          <a href="https://github.com/perrebser">By perrebser</a>
-        </footer>
       </main>
     </>
   );

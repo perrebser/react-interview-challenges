@@ -17,20 +17,21 @@ export interface Book{
 
 interface Props{
   books:Book[];
+  onAddToReadingList:(ISBN: string)=>void;
 }
-const Books: React.FC<Props> = ({books}) => {
+const Books: React.FC<Props> = ({books,onAddToReadingList}) => {
   return (
     <>
     {
       books.length==0 ?
       <span>No hemos encontrado libros</span>
       :
-      <ul className="ml-4 grid grid-cols-4 gap-x-5 max-w-3xl">
+      <ul className="grid grid-cols-1 md:grid-cols-6 gap-x-3">
         {books.map((book) => (
-          <li  key={book.ISBN} className="flex justify-center flex-col">
+          <li  key={book.ISBN} className="flex justify-center flex-col w-52 cursor-pointer" onClick={()=>onAddToReadingList(book.ISBN)}>
             <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
             <div className="img-content">
-            <img src={book.cover} className="aspect-9/16" width={200}></img>
+            <img src={book.cover} className="aspect-9/16 object-cover" width={200}></img>
             <div className="image-overlay"></div>
             </div>
             <span>
