@@ -20,9 +20,18 @@ function App() {
 
   const [filter, setFilter] = useState<string>("");
 
+  const[ numPagesFilter,setNumPagesFilter]=useState<number>(200)
+
   const handleChangeFilter = (event:React.ChangeEvent<HTMLSelectElement>): void => {
     setFilter(event.target.value);
   };
+
+  const handleChangeFilterPages=(event:React.ChangeEvent<HTMLInputElement>):void=>{
+    const maxPages:number=event.target.valueAsNumber
+    setNumPagesFilter(maxPages)
+    const filteredBooks=books.filter((element)=>element.pages<=maxPages);
+    setFilteredBooks(filteredBooks);
+  }
 
   const handleAddToReadingList = (ISBN: string): void => {
     const book = books.find((element) => element.ISBN === ISBN);
@@ -54,10 +63,10 @@ function App() {
         </nav>
         <section className="content">
           <div className="flex mb-3 justify-items-start gap-4 border-b-2 border-white">
-            <h2 className="text-2xl cursor-pointer hover:text-white">
+            <h2 className="text-2xl cursor-pointer hover:text-white" onClick={()=>setFilteredBooks(books)}>
               Libros disponibles({avaliableBooks})
             </h2>
-            <h2 className="text-2xl cursor-pointer hover:text-white">
+            <h2 className="text-2xl cursor-pointer hover:text-white" onClick={()=>setFilteredBooks(readingList)}>
               Lista de Lectura({readingListCount})
             </h2>
           </div>
@@ -67,7 +76,7 @@ function App() {
           />
         </section>
         <aside>
-          <SideBar onChangeFilter={handleChangeFilter} />
+          <SideBar onChangeFilter={handleChangeFilter} onFilterPage={handleChangeFilterPages} numPagesFilter={numPagesFilter} />
         </aside>
       </main>
     </>
