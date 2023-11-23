@@ -34,10 +34,18 @@ function App() {
   }
 
   const handleAddToReadingList = (ISBN: string): void => {
+    //TODO need to check if books is in reading list -> delete from reading, if not -> add to reading list //rerender avaliable & readingList
     const book = books.find((element) => element.ISBN === ISBN);
-    setReadingList([...readingList, book!]);
-    const avaliableBooks=books.filter((element)=>element.ISBN!==ISBN)
-    setBooks(avaliableBooks)
+    if(book){
+      setReadingList([...readingList, book!]);
+      const avaliableBooks=books.filter((element)=>element.ISBN!==ISBN)
+      setBooks(avaliableBooks)
+    }else{
+      const ereadingList=readingList.filter((element)=>element.ISBN!==ISBN)
+      setReadingList(ereadingList)
+      console.log(readingList)
+      console.log(books)
+    }
   };
 
   useEffect(() => {
