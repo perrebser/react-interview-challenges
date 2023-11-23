@@ -5,7 +5,8 @@ import data from "./const/books.json";
 import SideBar from "./components/SideBar";
 
 function App() {
-  const [books] = useState<Book[]>(
+
+  const [books,setBooks] = useState<Book[]>(
     data.library.map((book) => book.book)
   );
 
@@ -26,11 +27,14 @@ function App() {
   const handleAddToReadingList = (ISBN: string): void => {
     const book = books.find((element) => element.ISBN === ISBN);
     setReadingList([...readingList, book!]);
+    const avaliableBooks=books.filter((element)=>element.ISBN!==ISBN)
+    setBooks(avaliableBooks)
   };
 
   useEffect(() => {
     setReadingListCount(readingList.length);
-  }, [readingList]);
+    setAvaliableBooks(books.length)
+  }, [readingList,books]);
 
   useEffect(() => {
     if (filter === "") {
