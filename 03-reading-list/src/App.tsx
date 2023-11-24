@@ -5,15 +5,16 @@ import data from "./const/books.json";
 import SideBar from "./components/SideBar";
 
 function App() {
+  const initialBooks=data.library.map((book)=>book.book)
   const [books, setBooks] = useState<Book[]>(
-    data.library.map((book)=>book.book)
+    JSON.parse(localStorage.getItem("books") || JSON.stringify(initialBooks))
   );
 
   const [readingListCount, setReadingListCount] = useState<number>(0);
 
   const [toggleRender, setToggleRender] = useState<number>(1);
 
-  const [readingList, setReadingList] = useState<Book[]>([]);
+  const [readingList, setReadingList] = useState<Book[]>( JSON.parse(localStorage.getItem("readingList") || "[]"));
 
   const [avaliableBooks, setAvaliableBooks] = useState<number>(books.length);
 
@@ -23,7 +24,10 @@ function App() {
 
   const [numPagesFilter, setNumPagesFilter] = useState<number>(200);
 
-
+  useEffect(() => {
+    localStorage.setItem("books", JSON.stringify(books));
+    localStorage.setItem("readingList", JSON.stringify(readingList));
+  }, [books,readingList]);
 
   const handleChangeFilter = (
     event: React.ChangeEvent<HTMLSelectElement>
