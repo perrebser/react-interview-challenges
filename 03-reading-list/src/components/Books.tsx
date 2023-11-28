@@ -26,11 +26,11 @@ const Books: React.FC<Props> = ({ books, onBookClick }) => {
           <span className="font-normal text-xl">Sin libros en la lista de lectura</span>
         </div>
       ) : (
-        <ul className="grid grid-cols-1 md:grid-cols-6 gap-x-3">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5">
           {books.map((book) => (
             <li
               key={book.ISBN}
-              className="flex justify-center flex-col w-52 cursor-pointer"
+              className="flex justify-center flex-col items-center w-52 cursor-pointer"
               onClick={() => onBookClick(book.ISBN)}
             >
               <p className="uppercase line-clamp-1 font-bold">{book.title}</p>
@@ -42,7 +42,7 @@ const Books: React.FC<Props> = ({ books, onBookClick }) => {
                 ></img>
                 <div className="image-overlay"></div>
               </div>
-              <span>
+              <span className="w-10/12">
                 <p className="text-sm font-semibold">{book.year}</p>
                 <p className="text-sm font-semibold capitalize">
                   {book.pages} pág.

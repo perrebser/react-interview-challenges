@@ -67,3 +67,11 @@ main{
   "left center center"
   "bottom bottom bottom";
 }
+
+#user-info{
+  width: 180px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

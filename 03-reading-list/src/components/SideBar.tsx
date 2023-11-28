@@ -1,3 +1,5 @@
+import "../index.css"
+
 interface Props {
   onChangeFilter: (event:React.ChangeEvent<HTMLSelectElement>) => void;
   onFilterPage:(event:React.ChangeEvent<HTMLInputElement>) => void;
@@ -31,6 +33,15 @@ const SideBar: React.FC<Props> = ({ onChangeFilter,onFilterPage,numPagesFilter }
           <option value="Terror">Terror</option>
           <option value="Aventuras">Aventuras</option>
         </select>
+      </div>
+      <div className="fixed bottom-0 border-solid border-2 border-white p-6 rounded-lg" id="user-info">
+        <div className="flex flex-col items-center">
+        <p>perrebser</p>
+        <a href="https://github.com/perrebser"><img src="/github-mark-white.png" alt="github-mark-white.png" width={20}></img></a>
+        </div>
+        <div>
+        <img src="https://avatars.githubusercontent.com/u/101811829?v=4" className="rounded-full" width={50}></img>
+        </div>
       </div>
     </div>
   );
