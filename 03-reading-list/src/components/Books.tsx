@@ -26,7 +26,7 @@ const Books: React.FC<Props> = ({ books, onBookClick }) => {
           <span className="font-normal text-xl">Sin libros en la lista de lectura</span>
         </div>
       ) : (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 justify-items-center">
           {books.map((book) => (
             <li
               key={book.ISBN}

@@ -75,3 +75,16 @@ main{
   justify-content: space-around;
   align-items: center;
 }
+
+@media screen and (max-width:640px) {
+  main{
+    grid-template-areas:
+    "top top top"
+    "left left left"
+    "center center center"
+    "bottom bottom bottom";
+  }
+  #user-info{
+    display: none;
+  }
+}

@@ -9,9 +9,9 @@ interface Props {
 const SideBar: React.FC<Props> = ({ onChangeFilter,onFilterPage,numPagesFilter }) => {
  
   return (
-    <div className="flex flex-col gap-5 justify-between ml-5 mt-6">
+    <div className="flex justify-evenly mt-6 sm:flex-col ml-5 gap-5">
       <div>
-        <p className="text-xl font-semibold">Por numero de paginas</p>
+        <p className="text-lg font-semibold">Por numero de paginas</p>
         <span>{numPagesFilter}</span>
         <input
           type="range"
@@ -24,7 +24,7 @@ const SideBar: React.FC<Props> = ({ onChangeFilter,onFilterPage,numPagesFilter }
         ></input>
       </div>
       <div className="filters">
-        <h2 className="text-xl pb-3 font-semibold">Filtra por genero</h2>
+        <h2 className="text-lg pb-3 font-semibold">Filtra por genero</h2>
         <select name="filtros" id="filter" className="cursor-pointer text-justify text-lg" defaultValue={""} onChange={(event)=>onChangeFilter(event)}>
           <option value="">Todos</option>
           <option value="fantasía">Fantasía</option>
