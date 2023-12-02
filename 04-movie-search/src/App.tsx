@@ -1,25 +1,24 @@
-import { useState } from 'react'
-import { movie } from './types'
-import './App.css'
-
+import { movieType } from "./types";
+import movies from "../mocks/movies.json";
+import "./App.css";
+import Movies from "./components/Movies";
 
 function App() {
-
+  const mocks=movies.Search
   return (
-    <>
-    <header className='flex justify-center'>
-      <p className='fixed top-0'>Movie app</p>
-    </header>
-    <section>
-      <form action=''>
-      <div className='flex justify-between items-center gap-9'>
-      <input className='h-12 rounded-xl' type='text' placeholder='Search movie...'></input>
-      <button className='bg-zinc-200 text-gray-900' type='submit'>Search</button>
-      </div>
+   <div>
+    <header className="flex flex-col items-center justify-center">
+      <h1 className="text-3xl mb-9">Movie Search</h1>
+      <form className="flex items-center gap-4">
+        <input type="text" className="bg-gray-50 border text-sm rounded-lg w-auto block p-2.5 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white" placeholder="Batman, Avengers..."/>
+        <button type="submit" className="border-white dark:bg-gray-700 w-24">Search</button>
       </form>
-    </section>
-    </>
-  )
+    </header>
+    <main className="flex justify-center mt-7">
+      <Movies movies={mocks}/>
+    </main>
+   </div>
+  );
 }
 
-export default App
+export default App;
