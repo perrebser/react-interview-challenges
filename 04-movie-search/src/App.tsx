@@ -1,23 +1,26 @@
-import { useState } from "react";
+import {useState } from "react";
 import "./App.css";
 import Movies from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
-
+import Filters from "./components/Filters";
 
 function App() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const { moviesResponse,getMovies } = useMovies();
+  const [filter,setFilter]=useState<string>("")
+  const { moviesResponse, getMovies } = useMovies({filter});
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     getMovies(searchValue);
-
   };
 
-  const handleOnChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
-    setSearchValue(event.currentTarget.value)
-  }
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
 
+  const handleFilter=(event:React.ChangeEvent<HTMLSelectElement>):void=>{
+   setFilter(event.currentTarget.value)
+  }
   return (
     <div>
       <header className="flex flex-col items-center justify-center">
@@ -29,7 +32,7 @@ function App() {
           <input
             type="text"
             required
-            onChange={(e)=>handleOnChange(e)}
+            onChange={(e) => handleOnChange(e)}
             value={searchValue}
             className="bg-gray-50 border text-sm rounded-lg w-auto block p-2.5 dark:bg-gray-700  dark:placeholder-gray-400 dark:text-white"
             placeholder="Batman, Avengers..."
@@ -39,6 +42,9 @@ function App() {
           </button>
         </form>
       </header>
+      <div>
+        <Filters showFilters={moviesResponse.length>0} onFilterChange={handleFilter}></Filters>
+      </div>
       <main className="flex justify-center mt-7">
         <Movies movies={moviesResponse} />
       </main>
