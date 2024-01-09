@@ -23,7 +23,6 @@ export function useMovies({ filter }: Props): MoviesHook {
   };
 
   useEffect(() => {
-    console.log('ejecutando')
     if (filter === "yearDESC") {
       const filteredMovies = [...moviesResponse].sort((a, b) => {
         return parseInt(a.Year) - parseInt(b.Year);
@@ -35,6 +34,6 @@ export function useMovies({ filter }: Props): MoviesHook {
       });
       setMoviesResponse(filteredMovies);
     }else if(filter==="placeholder")return
-  }, [filter, moviesResponse]);
+  }, [filter]);
   return { moviesResponse, getMovies };
 }

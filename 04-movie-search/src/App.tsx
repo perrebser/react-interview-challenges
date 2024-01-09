@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import "./App.css";
 import Movies from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
@@ -6,6 +6,7 @@ import Filters from "./components/Filters";
 
 function App() {
   const [searchValue, setSearchValue] = useState<string>("");
+  const [updateSearchValue, setUpdateSearchValue] = useState<string>("");
   const [filter,setFilter]=useState<string>("")
   const { moviesResponse, getMovies } = useMovies({filter});
 
@@ -15,12 +16,22 @@ function App() {
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearch=event.currentTarget.value
     setSearchValue(event.currentTarget.value);
+    setUpdateSearchValue(newSearch);
   };
 
   const handleFilter=(event:React.ChangeEvent<HTMLSelectElement>):void=>{
    setFilter(event.currentTarget.value)
   }
+
+  useEffect(() => {
+    const timeoutId=setTimeout(()=>{
+    getMovies(updateSearchValue)
+  },300)
+  return ()=>clearTimeout(timeoutId)
+  }, [updateSearchValue])
+  
   return (
     <div>
       <header className="flex flex-col items-center justify-center">
