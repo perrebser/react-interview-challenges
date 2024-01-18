@@ -5,3 +5,8 @@ export interface movieType{
     Type:string,
     Poster:string,
 }
+
+interface FilterOptions{
+   type: string,
+   sort: string,
+  }

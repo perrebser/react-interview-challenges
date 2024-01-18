@@ -1,14 +1,18 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Movies from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import Filters from "./components/Filters";
+import { FilterOptions } from "./types";
 
 function App() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [updateSearchValue, setUpdateSearchValue] = useState<string>("");
-  const [filter,setFilter]=useState<string>("")
-  const { moviesResponse, getMovies } = useMovies({filter});
+  const [filters, setFilters] = useState<FilterOptions>({
+    type: "",
+    sort: "",
+  });
+  const { moviesResponse, getMovies } = useMovies({ filters });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -16,22 +20,26 @@ function App() {
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearch=event.currentTarget.value
+    const newSearch = event.currentTarget.value;
     setSearchValue(event.currentTarget.value);
     setUpdateSearchValue(newSearch);
   };
 
-  const handleFilter=(event:React.ChangeEvent<HTMLSelectElement>):void=>{
-   setFilter(event.currentTarget.value)
-  }
+  const handleFilter = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    setFilters({
+      type: event.currentTarget.id,
+      sort: event.currentTarget.value
+    })
+      
+  };
 
   useEffect(() => {
-    const timeoutId=setTimeout(()=>{
-    getMovies(updateSearchValue)
-  },300)
-  return ()=>clearTimeout(timeoutId)
-  }, [updateSearchValue])
-  
+    const timeoutId = setTimeout(() => {
+      getMovies(updateSearchValue);
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [updateSearchValue]);
+
   return (
     <div>
       <header className="flex flex-col items-center justify-center">
@@ -54,7 +62,10 @@ function App() {
         </form>
       </header>
       <div>
-        <Filters showFilters={moviesResponse.length>0} onFilterChange={handleFilter}></Filters>
+        <Filters
+          showFilters={moviesResponse.length > 0}
+          onFilterChange={handleFilter}
+        ></Filters>
       </div>
       <main className="flex justify-center mt-7">
         <Movies movies={moviesResponse} />
