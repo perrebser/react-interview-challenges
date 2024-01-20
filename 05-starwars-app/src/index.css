@@ -21,6 +21,9 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.4em 0.9em;
 }
 a:hover {
   color: #535bf2;
@@ -30,8 +33,8 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  justify-content: space-around;
 }
 
 h1 {
@@ -42,11 +45,11 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.4em 0.9em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -57,7 +60,9 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+#root{
+  width: 60%;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -65,8 +70,5 @@ button:focus-visible {
   }
   a:hover {
     color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
   }
 }
