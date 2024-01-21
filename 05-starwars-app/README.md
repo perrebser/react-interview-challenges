@@ -27,5 +27,3 @@ Requirements:
 6. When selecting a character from the list, the detail will show the data that you consider appropriate.
 7. OPTIONAL: Detail of movies, vehicles, ships, species...
 7. OPTIONAL: Photo of each character.
-
-Translated with DeepL.com (free version)
