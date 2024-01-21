@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { apiResponse,characterInfo } from "../src/";
-
 export function usePeople() {
   const API_URL = "https://swapi.dev/api/people/";
 
@@ -23,5 +20,16 @@ export function usePeople() {
             return []
     }
   }
-  return {getCharacters,getCharacterDetails}
+
+  const getNextPage=async(pageUrl:string|undefined)=>{
+    if (pageUrl==undefined) return;
+    try{
+      const response=await fetch(pageUrl)
+      const data = await response.json()
+      return data
+    }catch(error){
+      return []
+    }
+  }
+  return {getCharacters,getCharacterDetails,getNextPage}
 }
